@@ -5,13 +5,27 @@ import MockBackend from '../MockBackend';
 import '../styles/App.css';
 
 const Sidebar = () => {
-
     const [ clients ] =  useState(MockBackend.listClients());
     const [ venues ] =  useState(MockBackend.listVenues());
 
     const addClient = (client) => {
         let created = MockBackend.addClient(client);
-        MockBackend.addFavoriteVenueToClient(created.id, client.newVenue);        
+        for(const venue of client.newVenue){
+            MockBackend.addFavoriteVenueToClient(created.id, venue.value);
+        }
+    }
+
+    const updateFavoriteVenueToClient = (newFavVenues, originalDataClient) => {        
+        for(const favVenue of originalDataClient?.favVenue){
+            let finded = false;
+            if(newFavVenues !== null){
+                for(const newFavVenue of newFavVenues){
+                    finded = (favVenue === newFavVenue.value) ? true : false;
+                    debugger;
+                }
+            }
+            if(!finded) MockBackend.removeFavoriteVenueFromClient(originalDataClient.id, favVenue);
+        }
     }
 
     const addVenueParent = (venue) => {
@@ -38,6 +52,7 @@ const Sidebar = () => {
                 addClient={ addClient }
                 venues={ venues }
                 addVenueParent={ addVenueParent }
+                updateFavoriteVenueToClient={ updateFavoriteVenueToClient }
             />
 
         </BrowserRouter>

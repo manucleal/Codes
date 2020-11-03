@@ -1,31 +1,57 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Select from 'react-select';
+import MockBackend from '../MockBackend';
+import { useLocation } from "react-router-dom";
 
 const ClientForm = (props) => {
-
-    const [ selectedOption, setSelectedOption ] = useState(null);
-    const { register, errors, handleSubmit, reset } = useForm();
-
+    let location = useLocation();
+    const isAddMode = !location?.client;
+    const currentClient = MockBackend.getClient(location?.client);
+    const originalDataClient = { id: currentClient?.id, favVenue: currentClient?.favoriteVenues };
+    const [ selectedOption, setSelectedOption ] = useState(loadValuesMultiSelect());
+    const allOptionsSelect = (isAddMode) ? formatOptions(props.venues) : loadValuesMultiSelect ();
+    const { register, errors, handleSubmit, reset } = useForm({
+        defaultValues: currentClient
+    });
+    
     const onSubmit = (data) => {
-        data.newVenue = selectedOption;
-        props.addClient(data);
-        reset();
+        if(isAddMode){
+            data.newVenue = selectedOption;
+            props.addClient(data); 
+        }
+        else {
+            props.updateFavoriteVenueToClient(selectedOption, originalDataClient);
+        }
+        cleanForm();
     }
+
+    const handleChange = (event)  => {
+        setSelectedOption(event);
+    }    
 
     const cleanForm = () => {
         reset();
+        setSelectedOption([]);
     }
 
-    const options = props.venues.map((venue) => {
-        return {
-            value: venue.id,
-            label: venue.name
-        }
-    });
+    function formatOptions (venues) {
+        return venues.map((venue) => {
+            return {
+                value: venue.id,
+                label: venue.name
+            }
+        });
+    }
 
-    const handleChange = (event)  => {
-        setSelectedOption(event.value);
+    function loadValuesMultiSelect () {
+        let selectedOptions = [];
+        if(currentClient){            
+            for(const venueId of currentClient.favoriteVenues){
+                selectedOptions = [ ...selectedOptions, formatOptions([MockBackend.getVenue(venueId)])[0] ];
+            }
+        }
+        return selectedOptions;
     }
 
     return (
@@ -36,7 +62,9 @@ const ClientForm = (props) => {
                     <div className="row">
                         <div className="col-md-4 col-form">
                             <label>Name</label>
-                            <input type="text" className="form-control" name="name" ref={
+                            <input type="text" className="form-control" name="name" 
+                            disabled={ !isAddMode }
+                            ref={
                                 register({
                                     required: { value: true, message: 'Name is required' }
                                 })
@@ -47,7 +75,9 @@ const ClientForm = (props) => {
                         </div>
                         <div className="col-md-4 col-form">
                             <label>Email</label>
-                            <input type="email" className="form-control" name="email" ref={
+                            <input type="email" className="form-control" name="email"
+                            disabled={ !isAddMode }
+                            ref={
                                 register({
                                     required: { value: true, message: 'Email is required' }
                                 })
@@ -58,7 +88,9 @@ const ClientForm = (props) => {
                         </div>
                         <div className="col-md-2 col-form">
                             <label>Age</label>
-                            <input type="number" className="form-control" name="age" ref={
+                            <input type="number" className="form-control" name="age" 
+                            disabled={ !isAddMode }
+                            ref={
                                 register({
                                     required: { value: true, message: 'Age is required' }
                                 })
@@ -72,18 +104,23 @@ const ClientForm = (props) => {
                     <div className="row ">
                         <div className="col-md-4 col-form">
                             <label>First Name</label>
-                            <input type="text" className="form-control" name="firstName" ref={
+                            <input type="text" className="form-control" name="firstName" 
+                            disabled={ !isAddMode }
+                            ref={
                                 register({
                                     required: { value: true, message: 'First Name is required' }
                                 })
-                            } />
+                            } 
+                            />
                             <span className="text-danger text-small d-block mb-2">
                                 {errors?.firstName?.message}
                             </span>
                         </div>
                         <div className="col-md-4 col-form">
                             <label>Last Name</label>
-                            <input type="text" className="form-control" name="lastName" ref={
+                            <input type="text" className="form-control" name="lastName"
+                            disabled={ !isAddMode }
+                            ref={
                                 register({
                                     required: { value: true, message: 'Last Name is required' }
                                 })
@@ -92,12 +129,13 @@ const ClientForm = (props) => {
                                 {errors?.lastName?.message}
                             </span>
                         </div>
-                        <div className="col-md-2 col-form">
+                        <div className="col-md-4 col-form">
                             <label>Favorite Venues</label>
                             <Select 
                                 placeholder="Choose One"
-                                value={options.find(obj => obj.value === selectedOption)}
-                                options={ options }
+                                value={ selectedOption }
+                                options={ allOptionsSelect }
+                                isMulti={ true }
                                 onChange={ handleChange }
                             />
                         </div>
@@ -106,20 +144,13 @@ const ClientForm = (props) => {
                     <div id="btnForm" className="col-md-12 btn-content text-right ">
                         <button type="button" onClick={ () => cleanForm() } className="btn btn-outline btn-light mr-5 btn-sm">Reset</button>
                         <button type="submit" className="btn btn-primary btn-sm ">Save</button>
+                        {/* <button type="submit" onClick={ () => submitForm('create') } className="btn btn-primary btn-sm ">Save</button> */}
                     </div>
                 </form>
-            </div >
-        </main >
+            </div>
+        </main>
     )
 
 }
 
 export default ClientForm;
-
-    // const onSelect = (selectedList, selectedItem) => {
-    //     selectedOption.push(selectedItem.id);
-    // }
-    
-    // const onRemove = (selectedList, selectedItem) => {
-    //     selectedOption.splice(selectedOption.indexOf(selectedItem.id), 1);
-    // } 

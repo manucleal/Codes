@@ -10,7 +10,7 @@ const Client = (props) => {
     const handleChange = (event) => {
         setInputSearch(event.target.value);
     }
-    
+
     // Input search
     useEffect(() => {
 
@@ -18,7 +18,7 @@ const Client = (props) => {
             String(client.age).includes(inputSearch)
         ).slice(0, 10)
         setSearchResults(results);
-        
+
     }, [ inputSearch ]);
 
     return (
@@ -49,33 +49,39 @@ const Client = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                    {searchResults.length ? (
-                        searchResults.map( 
-                            client => (
-                                <tr key={ client.id }>
-                                    <td>{ client.id }</td>
-                                    <td>{ client.name }</td>
-                                    <td>{ client.email }</td>
-                                    <td>{ (typeof client.age !== "undefined" && client.age !== '') ? client.age : 'N/A' }</td>
-                                    <td>{ (typeof client.firstName !== "undefined" && client.firstName !== '') ? client.firstName : 'N/A' } </td>
-                                    <td>{ (typeof client.lastName !== "undefined" && client.lastName !== '') ? client.lastName : 'N/A' }</td>
-                                    <td> 
-                                        {   
-                                            MockBackend.getClientFavoriteVenues(client.id).map(
-                                                vanue => ( 
-                                                    vanue.name + ' / '
+                    {   searchResults.length ? (
+                            searchResults.map( 
+                                client => (
+                                    <tr key={ client.id }>
+                                        <td>{ client.id }</td>
+                                        <td>{ client.name }</td>
+                                        <td>{ client.email }</td>
+                                        <td>{ (typeof client.age !== "undefined" && client.age !== '') ? client.age : 'N/A' }</td>
+                                        <td>{ (typeof client.firstName !== "undefined" && client.firstName !== '') ? client.firstName : 'N/A' } </td>
+                                        <td>{ (typeof client.lastName !== "undefined" && client.lastName !== '') ? client.lastName : 'N/A' }</td>
+                                        <td> 
+                                            {   
+                                                MockBackend.getClientFavoriteVenues(client.id).map(
+                                                    vanue => ( 
+                                                        <span key={ vanue.id }>{ '- ' + vanue.name }<br/></span> 
+                                                    )
                                                 )
-                                            )
-                                        } 
-                                    </td>
-                                    {/* <td><button className="button muted-button">Delete</button></td> */}
-                                    <td>{ client.id }</td>
-                                </tr>
+                                            }
+                                        </td>
+                                        <td>
+                                            <Link to={ { pathname: '/UpdateClient', client: client.id } }>                                                
+                                                <button className="button muted-button"> 
+                                                    Update
+                                                </button>
+                                            </Link>
+                                        </td>
+                                    </tr>
+                                )
                             )
+                        ) : (
+                            <tr><td>No clients</td></tr>
                         )
-                    ) : (
-                        <tr><td>No clients</td></tr>
-                    )}
+                    }
                     </tbody>
                 </table>
             </div>

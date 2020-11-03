@@ -42,14 +42,17 @@ const Venue = (props) => {
                         </tr>
                     </thead>
                     <tbody>  
-                        {
-                            searchResults.map( 
-                                venue => (
-                                    <tr key={ venue.id }>
-                                        <td>{ venue.id }</td>
-                                        <td>{ venue.name }</td>
-                                    </tr>
+                        {   searchResults ? (
+                                searchResults.map( 
+                                    venue => (
+                                        <tr key={ venue.id }>
+                                            <td>{ venue.id }</td>
+                                            <td>{ venue.name }</td>
+                                        </tr>
+                                    )
                                 )
+                            ) : (
+                                <tr><td>No venues</td></tr>  
                             )
                         }
                     </tbody>

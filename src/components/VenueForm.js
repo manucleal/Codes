@@ -10,10 +10,6 @@ const VenueForm = (props) => {
         reset();
     }
 
-    const cleanForm = () => {
-        reset();
-    }
-
     return (
         <form className="form-groups" onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
@@ -31,7 +27,7 @@ const VenueForm = (props) => {
             </div>
 
             <div  className="col-md-6 btn-content text-right ">
-                <button type="button" onClick={ () => cleanForm() } className="btn btn-outline btn-light mr-5 btn-sm">Reset</button>
+                <button type="button" onClick={ () => reset() } className="btn btn-outline btn-light mr-5 btn-sm">Reset</button>
                 <button type="submit" className="btn btn-primary btn-sm ">Save</button>
             </div>
         </form>
