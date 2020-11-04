@@ -1,28 +1,40 @@
+// System
 import React, { useState, useEffect } from 'react';
+
+// Components
 import VenueForm from './VenueForm';
+
+// Services
+import MockBackend from '../MockBackend';
+import { alertService } from '../services';
 
 const Venue = (props) => {
     
     const [ inputSearch, setInputSearch ]  = useState('');
     const [ searchResults, setSearchResults ]  = useState([]);
 
-    const addVenue = (venue) => {
-        props.addVenueParent(venue);
-        setSearchResults([ ...searchResults, venue ]);
+    const addVenue = async (venue) => {
+        try {
+            await MockBackend.addVenue(venue);
+            alertService.success('Venue added', { keepAfterRouteChange: true });
+            setSearchResults([ ...searchResults, venue ]);
+        } 
+        catch (error) {
+            alertService.error(error, { keepAfterRouteChange: true });
+        }
     }
 
+    // onChange Input search
     const handleChange = (event) => {
         setInputSearch(event.target.value);
     }
 
     //Input search
     useEffect(() => {
-
         const results = props.venues.filter(venue => 
             venue.name.toLowerCase().includes(inputSearch)
         ).slice(0, 10)
         setSearchResults(results);
-
     }, [ inputSearch ]);
 
 

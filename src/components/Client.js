@@ -1,24 +1,26 @@
+// System
 import React, { useState, useEffect } from 'react';
-import MockBackend from '../MockBackend';
 import { Link } from "react-router-dom";
+
+// Components
+import MockBackend from '../MockBackend';
 
 const Client = (props) => {
     
     const [ inputSearch, setInputSearch ]  = useState('');
     const [ searchResults, setSearchResults ]  = useState([]);
-
+    
+    // onChange Input search
     const handleChange = (event) => {
         setInputSearch(event.target.value);
     }
 
     // Input search
     useEffect(() => {
-
         const results = props.clients.filter(client => 
             String(client.age).includes(inputSearch)
         ).slice(0, 10)
         setSearchResults(results);
-
     }, [ inputSearch ]);
 
     return (
@@ -71,7 +73,7 @@ const Client = (props) => {
                                         <td>
                                             <Link to={ { pathname: '/UpdateClient', client: client.id } }>                                                
                                                 <button className="button muted-button"> 
-                                                    Update
+                                                    Update Fav Venues
                                                 </button>
                                             </Link>
                                         </td>
