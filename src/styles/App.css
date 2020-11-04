@@ -1,13 +1,17 @@
-/* .App {
-	text-align: center;
-}*/
+/* INT */
+
 body {
 	font-family: "Lato", sans-serif;
 }
 
-main{
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+
+main {
     width: 82%;
-    margin: 0% 0 0 15%;
+    /* margin: 0% 0 0 15%; */
+    margin: 0% 0 0 20%;
     overflow: hidden;
     position: relative;
 }
@@ -15,40 +19,9 @@ main{
 main small{
     width: 100%;
     color: #ccc;
-    font-size: 18px;
+    font-size: 20px;
     display: inline-block;
     margin: 2% 0;
-}
-
-.search-align {
-	float: right;
-}
-
-.App-logo {
-  	animation: App-logo-spin infinite 20s linear;
-  	height: 6vmin;
-	pointer-events: none;
-	/* display: inline; */
-	/* text-align: center; */
-	margin-top: 9px;
-    margin-left: 55px;
-}
-
-.App-header {
-  	background-color: #282c34;
-  	min-height: 11vh;
-  	display: flex;
-  	flex-direction: column;
-  	align-items: center;
-  	justify-content: center;
-  	font-size: calc(10px + 2vmin);
-	color: white;
-	border-radius: 0px 0px 10px 0px;
-}
-
-.App-link {
-	/* color: #61dafb; */
-	text-decoration: none;
 }
 
 @keyframes App-logo-spin {
@@ -56,146 +29,111 @@ main small{
 	  transform: rotate(0deg);
 	}
 	to {
-	  transform: rotate(360deg);
+      transform: rotate(360deg);
 	}
 }
 
-/* My style */
-
-.sidebar {
-	position: fixed;
-	width: 170px;
-	height: 100%;
-	z-index: 1;
-	top: 0;
-	left: 0;
-	overflow-x: hidden;
-	padding-top: 0.5%;
-	transition: 0.5s;
-	background-color: #282c34;
+#search {
+    margin-right: 8%;
 }
 
-.sidebar ul li {
-	list-style:none;
-}
-
-.sidebar ul li a {
-	padding: 8px 8px 8px 14px;
-	text-decoration: none;
-	font-size: 25px;
-	color: #818181;
-	display: block;
-	transition: 0.3s;
-}
-
-.sidebar ul li a:hover {
-	color: #f1f1f1;
-}
-
-.items {
-	padding-top: 15.5%;
-}
-
-.openMenu {
-	font-size: 25px;
-	cursor: pointer;
-	background-color: #282c34;
-	color: white;
-	padding: 0px 25px;
-	border: none;
-}
-
-.openMenu:hover {
-	color: #5dbcd2;
+.search-align {
+    float: right;
+    
 }
 
 #btnForm {
     padding-right: 17.5%;
     margin-top: 10%;
+
+}
+
+#btn-form {
+    color: #fff;
+    background-color: #f8b739;
+    border-color: #f8b739;
+}
+
+.clientTable {
+    float: left;
+    width: 90%;
 }
 
 .venueTable {
     float: left;
-    margin-top: 4%;
-    width: 30%;
+    margin-top: 3%;
+    width: 40%;
 }
 
 .venueForm {
     float: left;
     width: 48%;
-    margin-top: 1%;
+    margin-top: 0.1%;
     margin-left: 4%;
 }
 
-/* Main --> Crear Empleado */
-
-.FormEmpleados{
-    overflow: hidden;
-    border: 1px solid #ddd;
-    padding: 3%;
-}
-.infoPersonal{
-    float: left;
-    width: 48%;
-}
-
-.infoPersonal input{
-    display: block;
-    width: 100%;
-    background:rgb(215,215,215);
-    border: none;
-    font-size: 14px;
-    margin-bottom: 3%;
-    box-sizing: border-box;
-    padding: 2%;
-}
-.infoPersonal textarea{
-    display: block;
-    background: rgb(215,215,215);
-    min-height: 129px;
-}
-.formInfo{
-    float: left;
-    width: 48%;
-    margin-left: 4%;
-}
-.formInfo fieldset{
-    width: 100%;
-    border:0;
-    padding: 4% 2%;
-}
-.formInfo fieldset legend{
-    float: left;
-    display: block;
-    width: 15%;
-}
-.formInfo fieldset label{
-    color: #ccc;
-    margin-left: 1%;
-    margin-right: 5%;
-}
-.divFooter{
-    float: left;
-    width: 100%;
-    padding: 3% 0;
-}
-.divFooter span{
-    color: gray
-}
-.divFooter input {
-    background:rgb(190,190,190);
-    border: none;
-    font-size: 14px;
-    width: 15%;
-    line-height: 10px;
-    box-sizing: border-box;
-    padding: 1%;
-    float: right;
+#my-sidebar {
+    position: fixed;
+    z-index: 1;
+    min-width: 15%;
+    max-width: 30%;
+    height: 100%;
+    background: #1d1919;
     color: #fff;
-    letter-spacing: 0.3rem;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+	top: 0;
+	left: 0;
+	overflow-x: hidden;
+}
+  
+#my-sidebar.active {
+    margin-left: -300px;
 }
 
-.divFooter input#limpiar{
-    background: none;
-    color: gray;
+#my-sidebar .logo {
+    display: block;
+    width: 118px;
+    height: 110px;
+    margin: 0 auto;
+    /* animation: App-logo-spin infinite 10s linear; */
 }
+
+#my-sidebar .logo span {
+    display: block;
+}
+
+#my-sidebar ul.components {
+    padding: 0;
+}
+
+#my-sidebar ul li {
+    font-size: 16px;
+}
+
+#my-sidebar ul li>ul {
+    margin-left: 10px;
+}
+
+#my-sidebar ul li>ul li {
+    font-size: 14px;
+}
+
+#my-sidebar ul li a {
+    padding: 10px 0;
+    display: block;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+  
+#my-sidebar ul li a:hover {
+    color: #f8b739;
+}
+  
+#my-sidebar ul li.active>a {
+    background: transparent;
+    color: #f8b739;
+}
+
+/* END */

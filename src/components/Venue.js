@@ -46,7 +46,7 @@ const Venue = (props) => {
         </div>
         <div id="content">
             <div className="venueTable">
-                <table className="table">
+                <table className="table table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>

@@ -14,7 +14,7 @@ const VenueForm = (props) => {
     return (
         <form className="form-groups" onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
-                <div className="col-md-6 col-form">
+                <div className="col-md-6 col-form mt-2">
                     <label>Add Venues</label>
                     <input type="text" className="form-control" name="name" placeholder="Venue Name" ref={
                         register({
@@ -29,7 +29,7 @@ const VenueForm = (props) => {
 
             <div  className="col-md-6 btn-content text-right ">
                 <button type="button" onClick={ () => reset() } className="btn btn-outline btn-light mr-5 btn-sm">Reset</button>
-                <button type="submit" className="btn btn-primary btn-sm ">Save</button>
+                <button type="submit" id="btn-form" className="btn btn-primary btn-sm ">Save</button>
             </div>
         </form>
     )

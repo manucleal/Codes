@@ -24,11 +24,11 @@ const Client = (props) => {
     }, [ inputSearch ]);
 
     return (
-        <main>
+        <main >
             <small><em>Clients List</em></small>
 
-            <div className="row form-group search-align">
-                <input type="search" name="search" className="col-md-11" value={ inputSearch } onChange={ handleChange } placeholder="Search by age" />
+            <div id="search" className="row form-group search-align">
+                <input type="search" name="search" className="col-md-10" value={ inputSearch } onChange={ handleChange } placeholder="Search by age" />
             </div>
 
             <Link to="/CreateClient">
@@ -36,8 +36,8 @@ const Client = (props) => {
                     Add Client +
                 </button>
             </Link>
-            <div id="content">
-                <table className="table">
+            <div className="clientTable">
+                <table className="table table-bordered mr-10 mt-5">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -81,7 +81,7 @@ const Client = (props) => {
                                 )
                             )
                         ) : (
-                            <tr><td>No clients</td></tr>
+                            <tr>No clients</tr>
                         )
                     }
                     </tbody>

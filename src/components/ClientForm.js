@@ -31,7 +31,6 @@ const ClientForm = (props) => {
     else {
         allOptionsSelect = formatOptions(props.venues);
     }
-
     
     // Form
     const { register, errors, handleSubmit, reset } = useForm({
@@ -122,7 +121,7 @@ const ClientForm = (props) => {
                 <form className="form-groups" onSubmit={handleSubmit(onSubmit)}>
                     <div className="row">
                         <div className="col-md-4 col-form">
-                            <label>Name</label>
+                            <label className="control-label">Name</label>
                             <input type="text" className="form-control" name="name" 
                             disabled={ !isAddMode }
                             ref={
@@ -148,7 +147,7 @@ const ClientForm = (props) => {
                                 {errors?.email?.message}
                             </span>
                         </div>
-                        <div className="col-md-4 col-form">
+                        <div className="col-md-3 col-form">
                             <label>Favorite Venues</label>
                             <Select 
                                 placeholder="Choose One"
@@ -187,7 +186,7 @@ const ClientForm = (props) => {
                         </div>
                         <div className="col-md-2 col-form">
                             <label>Age</label>
-                            <input type="number" className="form-control" name="age" 
+                            <input type="number" min="0" max="100" className="form-control" name="age" 
                             disabled={ !isAddMode } 
                             ref={
                                 register({ value: true })
@@ -199,8 +198,10 @@ const ClientForm = (props) => {
                         </div>
                     </div>
                     <div id="btnForm" className="col-md-12 btn-content text-right ">
-                        <button type="submit" className="btn btn-primary btn-sm ">Save</button>
-                        <Link to={isAddMode ? '.' : '/Client'} className="btn btn-outline btn-light mr-5 btn-sm">Cancel</Link>
+                        <button type="submit" id="btn-form" className="btn btn-primary btn-sm mr-5">Save</button>
+                        <Link className="btn btn-outline btn-light">
+                            <span onClick={ ()=> window.history.back() } >Cancel</span>
+                        </Link>
                     </div>
                 </form>
             </div>
