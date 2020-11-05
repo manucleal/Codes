@@ -37,15 +37,26 @@ main small{
     margin-right: 8%;
 }
 
+.input-search {
+    background-color: rgb(215,215,215);
+    border-radius: 5px;
+    border: none;
+    padding-top: 0.4%;
+    padding-right: 1%;
+    padding-bottom: 0.3%;
+}
+
 .search-align {
     float: right;
-    
+}
+
+.size {
+    height: 34px;
 }
 
 #btnForm {
     padding-right: 17.5%;
     margin-top: 10%;
-
 }
 
 #btn-form {

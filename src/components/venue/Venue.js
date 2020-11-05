@@ -42,7 +42,7 @@ const Venue = (props) => {
         <main>
         <small><em>Venues List</em></small>
         <div className="row form-group">
-            <input type="search" className="col-md-2 ml-3" name="search" value={ inputSearch } onChange={ handleChange } placeholder="Search" />
+            <input type="search" className="col-md-2 ml-3 input-search" name="search" value={ inputSearch } onChange={ handleChange } placeholder="Search" />
         </div>
         <div id="content">
             <div className="venueTable">

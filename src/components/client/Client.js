@@ -28,11 +28,11 @@ const Client = (props) => {
             <small><em>Clients List</em></small>
 
             <div id="search" className="row form-group search-align">
-                <input type="search" name="search" className="col-md-10" value={ inputSearch } onChange={ handleChange } placeholder="Search by age" />
+                <input type="search" name="search" className="col-md-10 input-search size" value={ inputSearch } onChange={ handleChange } placeholder="Search by age" />
             </div>
 
             <Link to="/CreateClient">
-                <button type="button">
+                <button id="btn-form" type="button">
                     Add Client +
                 </button>
             </Link>
@@ -72,7 +72,7 @@ const Client = (props) => {
                                         </td>
                                         <td>
                                             <Link to={ { pathname: '/UpdateClient', client: client.id } }>                                                
-                                                <button className="button muted-button"> 
+                                                <button id="btn-form" className="button muted-button"> 
                                                     Update Fav Venues
                                                 </button>
                                             </Link>
