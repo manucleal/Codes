@@ -5,8 +5,8 @@ import React, { useState, useEffect } from 'react';
 import VenueForm from './VenueForm';
 
 // Services
-import MockBackend from '../MockBackend';
-import { alertService } from '../services';
+import MockBackend from '../../MockBackend';
+import { alertService } from '../../services';
 
 const Venue = (props) => {
     

@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Sidebar from './layouts/Sidebar';
+import Container from './containers/Container';
 
 const App = () => {
-    return (<Sidebar/>);
+    return (<Container/>);
 }
 
 export default App;

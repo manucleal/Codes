@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 
 // Components
-import MockBackend from '../MockBackend';
+import MockBackend from '../../MockBackend';
 
 const Client = (props) => {
     
@@ -81,7 +81,7 @@ const Client = (props) => {
                                 )
                             )
                         ) : (
-                            <tr>No clients</tr>
+                            <tr><td>No clients</td></tr>
                         )
                     }
                     </tbody>

@@ -1,12 +1,12 @@
 // System
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Components
-import { Alert } from '../components/Alert';
-import Client from '../components/Client';
-import ClientForm from '../components/ClientForm';
-import Venue from '../components/Venue';
+import { Alert } from '../components/alert/Alert';
+import Client from '../components/client/Client';
+import ClientForm from '../components/client/ClientForm';
+import Venue from '../components/venue/Venue';
 
 
 const Routes = (props) => {
@@ -14,6 +14,7 @@ const Routes = (props) => {
         <>
         <Alert />
         <Switch>
+            <Route exact path="/" component={ () => <Client clients={ props.clients } /> }><Redirect to="/client" /></Route>
             <Route path='/client' component={ () => <Client clients={ props.clients } /> } />
             <Route exact path='/createClient' component={ () => <ClientForm venues={ props.venues } /> } />
             <Route exact path='/updateClient' component={ () => <ClientForm venues={ props.venues } /> } />

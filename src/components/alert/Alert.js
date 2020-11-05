@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { alertService, AlertType } from '../services';
+import { alertService, AlertType } from '../../services';
 
 const propTypes = {
     id: PropTypes.string,
@@ -100,7 +100,7 @@ function Alert({ id, fade }) {
 
     return (
         <main>
-            <div className="m-3">
+            <div className="mt-2 mr-5">
                 {alerts.map((alert, index) =>
                     <div key={index} className={cssClasses(alert)}>
                         <a className="close" onClick={() => removeAlert(alert)}>&times;</a>

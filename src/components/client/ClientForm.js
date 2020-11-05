@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 import Select from 'react-select';
 
 // Services
-import MockBackend from '../MockBackend';
-import { alertService } from '../services';
+import MockBackend from '../../MockBackend';
+import { alertService } from '../../services';
 
 const ClientForm = (props) => {
     
@@ -198,10 +198,10 @@ const ClientForm = (props) => {
                         </div>
                     </div>
                     <div id="btnForm" className="col-md-12 btn-content text-right ">
-                        <button type="submit" id="btn-form" className="btn btn-primary btn-sm mr-5">Save</button>
-                        <Link className="btn btn-outline btn-light">
+                        <Link className="btn btn-outline btn-light mr-5">
                             <span onClick={ ()=> window.history.back() } >Cancel</span>
                         </Link>
+                        <button type="submit" id="btn-form" className="btn btn-primary btn-sm ">Save</button>
                     </div>
                 </form>
             </div>
