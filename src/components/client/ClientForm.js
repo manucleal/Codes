@@ -60,19 +60,25 @@ const ClientForm = (props) => {
         }
     }
     
-    // Only Venue
+    // Update client (only Venue)
     const updateClient = async (selectedOption, originalDataClient) => {
         try {
-
-            for(const favVenue of originalDataClient?.favVenue){
-                let finded = false;
-                if(selectedOption !== null){
-                    for(const newFavVenue of selectedOption){
-                        finded = (favVenue === newFavVenue.value) ? true : false;
+            if(originalDataClient.favVenue.length > 0){
+                for(const favVenue of originalDataClient?.favVenue){
+                    let finded = false;
+                    if(selectedOption !== null){
+                        for(const newFavVenue of selectedOption){
+                            finded = (favVenue === newFavVenue.value) ? true : false;
+                        }
+                    }
+                    if(!finded) {
+                        await MockBackend.removeFavoriteVenueFromClient(originalDataClient.id, favVenue);
                     }
                 }
-                if(!finded) {
-                    await MockBackend.removeFavoriteVenueFromClient(originalDataClient.id, favVenue);
+            }
+            else {
+                for(const newFavVenue of selectedOption){
+                    MockBackend.addFavoriteVenueToClient(originalDataClient.id, newFavVenue.value);
                 }
             }
 
